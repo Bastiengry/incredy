@@ -1,0 +1,76 @@
+server:
+  port: 8081
+  forward-headers-strategy: framework
+  
+spring:
+  application:
+    name: incredy
+  security:
+    oauth2:
+      resourceserver: 
+        jwt:
+          issuer-uri: http://localhost:9999/realms/incredy
+          jwk-set-uri: http://localhost:9999/realms/incredy/protocol/openid-connect/certs
+  datasource:
+    url: jdbc:postgresql://localhost:5432/incredy
+    username: postgres
+    password: bgry
+    driverClassName: org.postgresql.Driver
+    hikari:
+      schema: public
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  auth:
+    converter:
+      resource-id: fullstack-springboot-client
+      principal-attribute: preferred_username
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    healthcheck:
+      enabled: true
+      
+management:
+  server:
+    port: 9081
+  health:
+    defaults:
+      enabled: false
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      discovery:
+        enabled: true
+      exposure:
+        include: "info,health,prometheus"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+    max-history: 30
+    max-size: 10MB   
+  level:
+    org.springframework.cloud.gateway: INFO
+    reactor.netty.http.client: INFO
+    fr.bgsoft: INFO

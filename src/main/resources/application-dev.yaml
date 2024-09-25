@@ -1,0 +1,24 @@
+management:
+  health:
+    defaults:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+    max-history: 30
+    max-size: 10MB   
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+    fr.bgsoft: DEBUG
