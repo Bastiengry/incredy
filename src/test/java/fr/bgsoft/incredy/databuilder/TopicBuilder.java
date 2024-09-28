@@ -19,8 +19,16 @@ public class TopicBuilder {
 				.lastModifiedDate(Instant.parse("2024-09-15T09:15:28.00Z")).build();
 	}
 
+	public static CreateTopicDto buildCreateTopicDto1() {
+		return CreateTopicDto.builder().title("title1").text("text1").build();
+	}
+
+	public static UpdateTopicDto buildUpdateTopicDto1() {
+		return UpdateTopicDto.builder().title("title1").text("text1").build();
+	}
+
 	public static Topic buildTopicFromCreateTopicDto(final CreateTopicDto createTopicDto) {
-		return Topic.builder().id(1L).title(createTopicDto.getTitle()).text(createTopicDto.getText()).build();
+		return Topic.builder().title(createTopicDto.getTitle()).text(createTopicDto.getText()).build();
 	}
 
 	public static TopicDto getTopicDtoForTopic(final Topic topic) {

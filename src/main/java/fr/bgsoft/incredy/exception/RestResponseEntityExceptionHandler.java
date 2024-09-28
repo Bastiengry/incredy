@@ -29,11 +29,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	// HttpStatus.CONFLICT, request);
 	// }
 
-	@ExceptionHandler(value = { Exception.class })
+	@ExceptionHandler(value = { EntityNotFoundException.class })
 	protected ResponseEntity<Object> handleEntityNotFoundException(
 			final Exception ex, final WebRequest request) {
-		logger.error(ex.getMessage(), ex);
-		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
+		final ResponseMessageDto responseMessageDto = ResponseMessageDto.builder().code("ENTITY_NOT_FOUND").message(ex.getMessage()).build();
+		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto)).build();
+		return new ResponseEntity<>(responseObjectDto, HttpStatus.BAD_REQUEST);
 	}
 
 	@SuppressWarnings("rawtypes")

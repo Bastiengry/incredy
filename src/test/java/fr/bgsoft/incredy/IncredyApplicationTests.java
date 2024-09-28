@@ -9,5 +9,4 @@ class IncredyApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
