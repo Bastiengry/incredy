@@ -34,6 +34,7 @@ import fr.bgsoft.incredy.repository.TopicRepository;
 import fr.bgsoft.incredy.service.TopicService;
 
 @Import({ SecurityConfiguration.class })
+//@ContextConfiguration(classes = { TopicController.class })
 @WebMvcTest(TopicController.class)
 public class TopicControllerTest {
 	private static final String TOPIC_CONTROLLER_URL = "/api/v1/topic";
@@ -88,8 +89,10 @@ public class TopicControllerTest {
 		final String exceptionMessage = "Topic 1 not found";
 		when(service.getById(1L)).thenThrow(new EntityNotFoundException(exceptionMessage));
 
-		final ResponseMessageDto responseMessageDto = ResponseMessageDto.builder().code("ENTITY_NOT_FOUND").message(exceptionMessage).build();
-		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto)).build();
+		final ResponseMessageDto responseMessageDto = ResponseMessageDto.builder().code("ENTITY_NOT_FOUND")
+				.message(exceptionMessage).build();
+		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto))
+				.build();
 
 		mockMvc.perform(MockMvcRequestBuilders.get(TOPIC_CONTROLLER_URL + "/1"))
 		.andDo(MockMvcResultHandlers.print())

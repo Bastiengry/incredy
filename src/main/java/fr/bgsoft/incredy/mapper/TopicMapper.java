@@ -15,6 +15,7 @@ public interface TopicMapper {
 	TopicDto entityToDto(Topic topic);
 
 	@Mappings({
+		@Mapping(target = "id", ignore = true),
 		@Mapping(target = "createdDate", ignore = true),
 		@Mapping(target = "lastModifiedDate", ignore = true),
 		@Mapping(target = "creatorUser", ignore = true),

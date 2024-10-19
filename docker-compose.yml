@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  incredy:
+    build: .  #PATH TO Dockerfile
+    image: docker-with-spring-profile/latest
+    ports:
+    - "8081:8081"
+    - "9081:9081"
+    network_mode: "host"
