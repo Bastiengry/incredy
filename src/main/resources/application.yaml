@@ -19,6 +19,7 @@ spring:
     hikari:
       schema: public
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect #spring-boot:build-image won't work without this line
     show-sql: true
     properties:
       hibernate:
