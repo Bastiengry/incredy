@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: incredy-config
+data:
+  SERVER_PORT: "8081"
+  DB_URL: "jdbc:postgresql://172.20.0.1:5432/incredy"
+  DB_USERNAME: "postgres"
+  DB_PASSWORD: "bgry"
+  SPRING_PROFILES_ACTIVE: "docker"
+  ISSUER_URI: "http://172.20.0.1:9999/realms/incredy"
+  JWT_SET_URI: "http://172.20.0.1:9999/realms/incredy/protocol/openid-connect/certs"
+  EUREKA_CLIENT_ENABLED: "false"
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: incredy-deployment
+  labels:
+    app: incredy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: incredy
+  template:
+    metadata:
+      labels:
+        app: incredy
+    spec:
+      containers:
+      - name: incredy
+        image: docker.io/library/docker-with-spring-profile:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8081
+        envFrom:
+        - configMapRef:
+            name: incredy-config
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: incredy-nodeport-service
+spec:
+  selector:
+    app: incredy
+  ports:
+    - protocol: TCP
+      port: 8081 # This is the port in the cluster (inside Kubernetes)
+      targetPort: 8081  # This is the port of the application
+      nodePort: 32081 # Port to join the application from outside (must be between 30000 and 32767)
+  type: NodePort

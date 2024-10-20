@@ -22,7 +22,6 @@ public class SecurityConfiguration {
 	public SecurityFilterChain resourceServerFilterChain(final HttpSecurity http) throws Exception {
 		http
 		//.csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
-		.cors(cors -> cors.disable())
 		.authorizeHttpRequests(auth -> auth.requestMatchers(new AntPathRequestMatcher("/api/v1/test/**"))
 				.permitAll()
 				.requestMatchers(new AntPathRequestMatcher("/api/v1/**", HttpMethod.GET.name())).permitAll()

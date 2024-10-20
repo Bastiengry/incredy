@@ -2,8 +2,18 @@ version: "3.7"
 services:
   incredy:
     build: .  #PATH TO Dockerfile
-    image: docker-with-spring-profile/latest
+    image: docker-with-spring-profile:latest
     ports:
     - "8081:8081"
     - "9081:9081"
     network_mode: "host"
+    environment:
+    - "SERVER_PORT=8081"
+    - "DB_URL=jdbc:postgresql://172.20.0.1:5432/incredy"
+    - "DB_USERNAME=postgres"
+    - "DB_PASSWORD=bgry"
+    - "SPRING_PROFILES_ACTIVE=docker"
+    - "ISSUER_URI=http://172.20.0.1:9999/realms/incredy"
+    - "JWT_SET_URI=http://172.20.0.1:9999/realms/incredy/protocol/openid-connect/certs"
+    - "EUREKA_SERVER_URI=http://172.20.0.1:8761/eureka"
+    - "EUREKA_CLIENT_ENABLED=true"

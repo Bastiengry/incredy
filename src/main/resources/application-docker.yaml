@@ -1,9 +1,27 @@
 server:
-  port: 8081
+  port: ${SERVER_PORT}
  
 spring:
+  security:
+    oauth2:
+      resourceserver: 
+        jwt:
+          issuer-uri: ${ISSUER_URI}
+          jwk-set-uri: ${JWT_SET_URI}
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     properties:
       hibernate:
         boot:
           allow_jdbc_metadata_access: false
+ 
+eureka:
+  client:
+    enabled: ${EUREKA_CLIENT_ENABLED:false}
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URI}
