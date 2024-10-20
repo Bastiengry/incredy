@@ -38,8 +38,7 @@ ip route show | grep -i default | awk '{ print $3}'
 - Import image in Minikube: Minikube image load docker-with-spring-profile.tar
 - List images in Minikube: Minikube image ls --format table
 - Get minikube IP: minikube ip
-- Deployment of application in Minikube: kubectl apply -f kubernetes/incredy-deployment.yml
-- Deployment of service (to access application) in Minikube: kubectl apply -f kubernetes/incredy-nodeport-service.yml
+- Deployment of application in Minikube: kubectl apply -f kubernetes/incredy-complete-deployment.yml
 - Launch service in Minikube: minikube service incredy-nodeport-service
  
  
