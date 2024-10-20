@@ -20,7 +20,7 @@ ip route show | grep -i default | awk '{ print $3}'
 ### Spring boot in Docker
 - Go in root folder of incredy project
 - Build the Docker image: docker build --tag=docker-with-spring-profile:latest .
-- Launch the Docker image in a container (via docker): docker run --name incredy --net host -d docker-with-spring-profile:latest -p 8081:8081 -p 9081:9081
+- Launch the Docker image in a container (via docker): docker run --name incredy --net host -p 8081:8081 -p 9081:9081 -d docker-with-spring-profile:latest
 - Launch the Docker image in a container (via docker compose): docker compose up
 - IN THE COMMAND ABOVE, "--net host" CONNECT DOCKER CONTAINER TO HOST NETWORK, AUTHORIZING THE COMMAND "curl localhost:8081"
 - Logs of the container: docker logs incredy
@@ -29,6 +29,10 @@ ip route show | grep -i default | awk '{ print $3}'
 - Delete container: docker rm incredy
 - Delete image: docker rmi docker-with-spring-profile:latest
 - Export image as tar: docker save docker-with-spring-profile:latest > docker-with-spring-profile.tar
+
+### Spring boot in Minikube
+- Launch WSL2 (Debian distribution): wsl --distribution Debian
+- Switch to user mode: su myuser
 - Launch minikube: minikube start --driver=docker   (launch Minikube with user, not root)
 - See Minikube dashboard: minikube dashboard
 - Import image in Minikube: Minikube image load docker-with-spring-profile.tar
