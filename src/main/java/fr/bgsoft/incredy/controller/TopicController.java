@@ -34,6 +34,7 @@ public class TopicController {
 	}
 
 	@GetMapping("")
+	//	@CrossOrigin(origins = "*") // JUST FOR TESTS FROM DOCKER
 	public ResponseEntity<ResponseObjectDto> getAll() throws EntityNotFoundException {
 		final List<TopicDto> topicDtos = topicService.getAll();
 		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().data(topicDtos).build();
