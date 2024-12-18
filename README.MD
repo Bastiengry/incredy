@@ -5,6 +5,7 @@
                                 see file ".env" for login/password for the administration console of keycloak
 - Configure keycloak: https://github.com/mateuszwlosek/oauth2-example/tree/master/oauth2-client
 
+- Connect to keycloak: use domain name and not IP address. By instance: http://localhost:9999
 
 ### VM argument for Spring Boot Profile ("dev" profile in that case)
 - -Dspring.profiles.active=dev
@@ -35,7 +36,8 @@ ip route show | grep -i default | awk '{ print $3}'
 - Switch to user mode: su myuser
 - Launch minikube: minikube start --driver=docker   (launch Minikube with user, not root)
 - See Minikube dashboard: minikube dashboard
-- Import image in Minikube: Minikube image load docker-with-spring-profile.tar
+- Saves the images as TAR: docker save -o /tmp/docker-with-spring-profile.tar docker-with-spring-profile
+- Import image in Minikube: Minikube image load /tmp/docker-with-spring-profile.tar
 - List images in Minikube: Minikube image ls --format table
 - Get minikube IP: minikube ip
 - Deployment of application in Minikube: kubectl apply -f kubernetes/incredy-complete-deployment.yml
