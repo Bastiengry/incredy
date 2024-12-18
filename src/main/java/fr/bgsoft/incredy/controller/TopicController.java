@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.bgsoft.incredy.config.ExtraTag;
 import fr.bgsoft.incredy.dto.topic.CreateTopicDto;
+import fr.bgsoft.incredy.dto.topic.ResponseObjectDto;
 import fr.bgsoft.incredy.dto.topic.TopicDto;
 import fr.bgsoft.incredy.dto.topic.UpdateTopicDto;
 import fr.bgsoft.incredy.exception.EntityNotFoundException;

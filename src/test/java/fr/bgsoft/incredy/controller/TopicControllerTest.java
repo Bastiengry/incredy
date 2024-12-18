@@ -26,6 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.bgsoft.incredy.config.SecurityConfiguration;
 import fr.bgsoft.incredy.dto.topic.CreateTopicDto;
+import fr.bgsoft.incredy.dto.topic.ResponseMessageDto;
+import fr.bgsoft.incredy.dto.topic.ResponseObjectDto;
 import fr.bgsoft.incredy.dto.topic.TopicDto;
 import fr.bgsoft.incredy.dto.topic.UpdateTopicDto;
 import fr.bgsoft.incredy.entity.Topic;
@@ -89,7 +91,9 @@ public class TopicControllerTest {
 		final String exceptionMessage = "Topic 1 not found";
 		when(service.getById(1L)).thenThrow(new EntityNotFoundException(exceptionMessage));
 
-		final ResponseMessageDto responseMessageDto = ResponseMessageDto.builder().code("ENTITY_NOT_FOUND")
+		final ResponseMessageDto responseMessageDto = ResponseMessageDto.builder()
+				.type("ERROR")
+				.code("ENTITY_NOT_FOUND")
 				.message(exceptionMessage).build();
 		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto))
 				.build();
@@ -161,7 +165,9 @@ public class TopicControllerTest {
 
 		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder()
 				.messages(List.of(
-						ResponseMessageDto.builder().code("UpdateTopicDtoOldTopicExistValidatorAnnotation")
+						ResponseMessageDto.builder()
+						.type("ERROR")
+						.code("UpdateTopicDtoOldTopicExistValidatorAnnotation")
 						.message("Old topic should exist").build()))
 				.build();
 
@@ -188,7 +194,9 @@ public class TopicControllerTest {
 
 		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder()
 				.messages(List.of(
-						ResponseMessageDto.builder().code("UpdateTopicDtoUserAuthorizedValidatorAnnotation")
+						ResponseMessageDto.builder()
+						.type("ERROR")
+						.code("UpdateTopicDtoUserAuthorizedValidatorAnnotation")
 						.message("User not allowed").build()))
 				.build();
 
