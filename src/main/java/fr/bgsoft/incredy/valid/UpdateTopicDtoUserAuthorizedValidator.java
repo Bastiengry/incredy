@@ -32,7 +32,6 @@ implements ConstraintValidator<UpdateTopicDtoUserAuthorizedValidatorAnnotation, 
 
 		if (oldTopicOpt.isPresent()) {
 			valid = false;
-
 			final Optional<String> currentUserIdOpt = Optional.of(SecurityContextHolder.getContext())
 					.map(SecurityContext::getAuthentication)
 					.map(Authentication::getPrincipal)

@@ -16,6 +16,10 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 
+import fr.bgsoft.incredy.metrics.MetricsConfig;
+import io.micrometer.core.aop.CountedAspect;
+import io.micrometer.core.instrument.MeterRegistry;
+
 @Configuration
 @EnableJpaAuditing
 @EnableAspectJAutoProxy(proxyTargetClass = true)
@@ -51,5 +55,11 @@ public class StandardConfig {
 					}
 					return null;
 				});
+	}
+
+	@Bean
+	public CountedAspect countedAspect(final MeterRegistry meterRegistry) {
+		final MetricsConfig metricsConfig = new MetricsConfig();
+		return new CountedAspect(meterRegistry, metricsConfig::tagFactory);
 	}
 }
