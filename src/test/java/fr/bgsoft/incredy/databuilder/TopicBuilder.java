@@ -24,7 +24,7 @@ public class TopicBuilder {
 	}
 
 	public static UpdateTopicDto buildUpdateTopicDto1() {
-		return UpdateTopicDto.builder().title("title1").text("text1").build();
+		return UpdateTopicDto.builder().id(1L).title("title1").text("text1").build();
 	}
 
 	public static Topic buildTopicFromCreateTopicDto(final CreateTopicDto createTopicDto) {

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.bgsoft.incredy.config.ExtraTag;
 import fr.bgsoft.incredy.dto.topic.CreateTopicDto;
 import fr.bgsoft.incredy.dto.topic.ResponseObjectDto;
 import fr.bgsoft.incredy.dto.topic.TopicDto;
 import fr.bgsoft.incredy.dto.topic.UpdateTopicDto;
 import fr.bgsoft.incredy.exception.EntityNotFoundException;
+import fr.bgsoft.incredy.metrics.ExtraTag;
 import fr.bgsoft.incredy.service.TopicService;
 import io.micrometer.core.annotation.Counted;
 import jakarta.validation.Valid;

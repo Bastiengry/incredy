@@ -68,7 +68,7 @@ public class TopicMapperTest {
 
 		final Topic mapperTopic = topicMapper.updateDtoToEntity(oldTopic, updateTopicDto);
 
-		// Does an equals without implementing to equals/hash code (lombok
+		// Does an equals without implementing equals/hash code (lombok
 		// EqualsAndHashCode is discouraged on JPA entities)
 		assertThat(mapperTopic).usingRecursiveComparison().isEqualTo(updatedTopic);
 	}
