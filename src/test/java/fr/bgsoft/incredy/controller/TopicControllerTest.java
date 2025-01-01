@@ -25,9 +25,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.bgsoft.incredy.config.SecurityConfiguration;
+import fr.bgsoft.incredy.dto.response.ResponseMessageDto;
+import fr.bgsoft.incredy.dto.response.ResponseObjectDto;
 import fr.bgsoft.incredy.dto.topic.CreateTopicDto;
-import fr.bgsoft.incredy.dto.topic.ResponseMessageDto;
-import fr.bgsoft.incredy.dto.topic.ResponseObjectDto;
 import fr.bgsoft.incredy.dto.topic.TopicDto;
 import fr.bgsoft.incredy.dto.topic.UpdateTopicDto;
 import fr.bgsoft.incredy.entity.Topic;

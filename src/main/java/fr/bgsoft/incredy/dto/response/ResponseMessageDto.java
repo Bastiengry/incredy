@@ -1,4 +1,4 @@
-package fr.bgsoft.incredy.dto.topic;
+package fr.bgsoft.incredy.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
