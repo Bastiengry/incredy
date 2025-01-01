@@ -1,4 +1,4 @@
-package fr.bgsoft.incredy.dto.topic;
+package fr.bgsoft.incredy.dto.response;
 
 import java.util.ArrayList;
 import java.util.List;

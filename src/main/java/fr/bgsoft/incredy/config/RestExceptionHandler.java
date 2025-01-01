@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import fr.bgsoft.incredy.dto.topic.ResponseMessageDto;
-import fr.bgsoft.incredy.dto.topic.ResponseObjectDto;
+import fr.bgsoft.incredy.dto.response.ResponseMessageDto;
+import fr.bgsoft.incredy.dto.response.ResponseObjectDto;
 import fr.bgsoft.incredy.exception.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +38,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				.code("ENTITY_NOT_FOUND")
 				.message(ex.getMessage())
 				.build();
-		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto)).build();
+		final ResponseObjectDto responseObjectDto = ResponseObjectDto.builder().messages(List.of(responseMessageDto))
+				.build();
 		return new ResponseEntity<>(responseObjectDto, HttpStatus.BAD_REQUEST);
 	}
 
